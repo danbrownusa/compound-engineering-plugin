@@ -156,56 +156,20 @@ For each iteration, output:
 
 When invoked, you should:
 
-### Step 0: Discover and Load Design Skills (MANDATORY)
+### Step 0: Check for Design Skills in Context
 
-**ALWAYS discover and load relevant design skills before starting iterations.** This ensures you have the best practices, patterns, and principles loaded into context.
+**Design skills like swiss-design, frontend-design, etc. are automatically loaded when invoked by the user.** Check your context for active skill instructions.
 
-**1. Discover ALL available design skills:**
+If the user mentions a design style (Swiss, minimalist, Stripe-like, etc.), look for:
+- Loaded skill instructions in your system context
+- Apply those principles throughout ALL iterations
 
-```bash
-# Check all skill locations for design-related skills
-ls ~/.claude/skills/ 2>/dev/null | grep -iE "(design|style|ui|ux|frontend|swiss|aesthetic)"
-ls .claude/skills/ 2>/dev/null | grep -iE "(design|style|ui|ux|frontend|swiss|aesthetic)"
-find ~/.claude/plugins/cache -path "*/skills/*" -name "*.md" 2>/dev/null | xargs grep -l -iE "(design|style|visual|typography|grid|layout)" | head -20
-```
-
-**2. Load skills based on context:**
-
-| User Mentions | Skills to Load |
-|---------------|----------------|
-| "Swiss design", "minimalist", "grid" | `swiss-design`, `swiss-design-skill` |
-| "frontend", "web", "UI" | `frontend-design` |
-| "Stripe", "Linear", "Vercel" | Research competitor + `frontend-design` |
-| General design work | Load ALL available design skills |
-
-**3. For each relevant skill found, READ the SKILL.md file:**
-
-```bash
-# Read skill documentation to load principles into context
-cat ~/.claude/skills/swiss-design/SKILL.md
-cat ~/.claude/skills/frontend-design/SKILL.md
-# etc.
-```
-
-**4. Extract and apply key principles:**
-
-After reading each skill, note the key design principles to follow during iterations:
-- Grid system specifications (columns, gutters, baseline)
+Key principles to extract from any loaded design skill:
+- Grid system (columns, gutters, baseline)
 - Typography rules (scale, alignment, hierarchy)
-- Color philosophy (palette, accent usage)
-- Layout principles (asymmetry, whitespace, balance)
+- Color philosophy
+- Layout principles (asymmetry, whitespace)
 - Anti-patterns to avoid
-
-**Example skill loading flow:**
-
-```
-1. User asks to improve design with "Swiss style"
-2. Search: ls ~/.claude/skills/ | grep -i swiss
-3. Found: swiss-design/
-4. Read: cat ~/.claude/skills/swiss-design/SKILL.md
-5. Extract: 8px baseline, 12-column grid, flush-left alignment, one typeface
-6. Apply these principles in ALL subsequent iterations
-```
 
 ### Step 1-5: Continue with iteration cycle
 
